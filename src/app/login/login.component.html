@@ -1,0 +1,52 @@
+
+
+<div class="main">
+    <div class="main2">
+        <p class="errr">{{message}}</p> 
+        <i class="fa-brands fa-youtube"></i>
+        <form [formGroup]="inputsForm" (ngSubmit)="save()">
+            <div class="inn">
+                <label>Username</label><br />
+                <input type="text" name="username" formControlName="username" placeholder="Username" required
+                       class="form-control" [ngClass]="{'is-invalid': isFormSaved && regCard['username'].errors }">
+                <div class="err-msg" *ngIf="isFormSaved  && regCard['username'].errors">
+                    <div *ngIf="regCard['username'].errors['required']">Username is required</div>
+                    <div *ngIf="regCard['username'].errors['pattern']">Minimum 30 characters</div>
+                </div>
+                <!-- <br /><span style="color: red;">{{message}}</span> -->
+            </div>
+
+            <div class="inn">            
+                <label>Password</label><br />
+                <input type="text" name="password" formControlName="password" placeholder="Password" required
+                        class="form-control" [ngClass]="{'is-invalid': isFormSaved && regCard['password'].errors }">
+                <div class="err-msg" *ngIf="isFormSaved  && regCard['password'].errors">
+                    <div *ngIf="regCard['password'].errors['required']">Password is required</div>
+                    <div *ngIf="regCard['password'].errors['minLength']">Minimum 6 characters required</div>
+                </div>
+            </div>
+
+            <div style="text-align: right;font-family: Arial, Helvetica, sans-serif;margin-right: 2vh;font-size: 18px;"><a href="#">Reset Password</a></div>
+
+            <div class="inn">            
+                <label>Environment</label><br />
+                <input style="background-color: #e4e4e4;" type="text" name="password" formControlName="password" placeholder="Placeholder" required
+                        class="form-control" [ngClass]="{'is-invalid': isFormSaved && regCard['password'].errors }">
+                <div class="err-msg" *ngIf="isFormSaved  && regCard['password'].errors">
+                    <div *ngIf="regCard['password'].errors['required']">Password is required</div>
+                    <div *ngIf="regCard['password'].errors['minLength']">Minimum 6 characters required</div>
+                </div>
+            </div>
+
+            <div style="text-align: center;font-family: Arial, Helvetica, sans-serif;margin: 3vh 0px;">Or,</div>
+
+            <!-- <div class="inn">
+                <button type="submit" class="btn btn-primary" >Register</button>
+            </div> -->
+
+            <div class="main3">
+                <button class="btn btn-primary">Sign in with Google</button>
+            </div>
+        </form>
+    </div>
+</div>
