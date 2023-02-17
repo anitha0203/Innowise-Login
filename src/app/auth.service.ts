@@ -1,12 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router,private http: HttpClient) { }
+
+  postData(username:any): Observable<any> {
+    console.log(username)
+    var body = {"UserNameOrEmail":username} 
+    return this.http.post('https://api.insurance.rahulmitra.dev/master/getuserenvironments',body);
+ }
 
   login(username:string,password:string){
       if(username=='Anitha' && password=="123456"){
@@ -27,4 +35,5 @@ export class AuthService {
     }
     return false;
   }
+  
 }
