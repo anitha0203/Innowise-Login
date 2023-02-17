@@ -3,11 +3,7 @@
     align-items: center;
     display: flex;
     height: 99vh;
-<<<<<<< HEAD
     margin:15px 0px;
-=======
-   margin:15px 0px;
->>>>>>> 4aff13c9bbc1f5c6c62a306be92f5e2c8b504f19
 }
 
 .main2{
@@ -38,23 +34,17 @@ input{
     font-size: 22px;
 }
 
+.custom-select-options {
+  width: 10px;  /*set your desired width here */
+}
+
 select {
     border-radius: 10px;
     border: 1px solid rgb(198, 197, 197);
     color: #555;
-    font-size: 22px;
+    font-size: 2.5vh;
     padding: 6px 10px;
-<<<<<<< HEAD
 }
-=======
-    font-size: 2vh;
-   
-  }
-   .custom-select-options {
-     width: 10px;  /*set your desired width here */
-  }
- 
->>>>>>> 4aff13c9bbc1f5c6c62a306be92f5e2c8b504f19
 
 input:hover{
     box-shadow: 0px 0px 3px 0px;
@@ -77,18 +67,6 @@ input[type="text"] + i {
     border: 1px solid rgb(122, 121, 121);
     padding:5px;
     border-radius: 25px;
-<<<<<<< HEAD
-=======
-    margin-right: 2px;
-  }
-  
-/* button{
-    padding: 1vh 2vh;
-    border-radius: 5px;
-    background-color: rgb(62, 126, 252);
-    border: 1px solid rgb(62, 126, 252);
-    color: white;
->>>>>>> 4aff13c9bbc1f5c6c62a306be92f5e2c8b504f19
 }
   
 .err-msg{
@@ -96,7 +74,6 @@ input[type="text"] + i {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.8vh;
     padding-top:2px
-
 }
 
 .errr{
