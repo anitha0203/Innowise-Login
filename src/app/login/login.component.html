@@ -9,13 +9,13 @@
                 <div class="input-wrapper">
                     <input type="text" name="UserNameOrEmail" formControlName="UserNameOrEmail" placeholder="Username" (input)="checkApi()" [(ngModel)]="inputText" required
                     class="form-control" [ngClass]="{'is-invalid': isFormSaved && regCard['UserNameOrEmail'].errors }">
-                    <i  style="color: rgb(122, 121, 121);" class="fas fa-times"  *ngIf="inputText" (click)="clearInput()"></i>
+                    <i  style="color: rgb(250, 5, 5);padding:2px 5px;border: 1px solid red;" class="fas fa-times"  *ngIf="inputText" (click)="clearInput()"></i>
                 </div>
                 
                 <div class="err-msg">{{error}}</div>
                 <div class="err-msg" *ngIf="isFormSaved1  && regCard['UserNameOrEmail'].errors">
                     <div *ngIf="regCard['UserNameOrEmail'].errors['required']">Username is required</div>
-                    <div *ngIf="regCard['UserNameOrEmail'].errors['pattern']">Minimum 30 characters</div>
+                    <!-- <div *ngIf="regCard['UserNameOrEmail'].errors['pattern']">Minimum 30 characters</div> -->
                 </div>
             </div>
 
@@ -29,19 +29,18 @@
                 </div>
             </div>
 
-            <div style="text-align: right;font-family: Arial, Helvetica, sans-serif;margin-right: 2vh;font-size: 18px;"><a href="#">Reset Password</a></div>
+            <div style="text-align: right;font-family: Arial, Helvetica, sans-serif;margin-right: 2vh;font-size: 2.5vh;"><a href="#">Reset Password</a></div>
             
             <div class="inn">     
                 <label>Environment</label><br />     
-              
-                <select name="EnvironmentID" formControlName="EnvironmentID" placeholder="Placeholder" required style="width: 100%;">
-                    <option style="background-color: rgb(249, 249, 6);width: 100px !important;">---Select----</option>
-                    <option style="background-color: rgb(249, 249, 6);max-width: 200px;" *ngFor="let item of envselect" >{{ item.organizationEnvironmentName}}</option>
+                <select class="custom-select" name="EnvironmentID" formControlName="EnvironmentID" placeholder="Placeholder" required style="width: 100%;">
+                    <option class="custom-select-options" style="background-color: rgb(253, 253, 253);width: 150px !important;">---Select----</option>
+                    <option style="width: 150px;" style="background-color: rgb(248, 248, 247);max-width: 200px;" *ngFor="let item of envselect" >{{ item.organizationEnvironmentName}}</option>
                </select>
             </div>
 
             <div style="text-align: right; margin-right: 2vh;">
-                <button class="btn btn-primary" *ngIf="true" [disabled]="!ttt">Login</button>
+                <button class="btn btn-primary" *ngIf="true" [disabled]="!ttt" style="font-size: 2.5vh;">Login</button>
             </div>
             <div style="text-align: center;font-family: Arial, Helvetica, sans-serif;margin: 3vh 0px;">Or,</div>
 

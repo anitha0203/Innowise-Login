@@ -21,6 +21,7 @@ export class LoginComponent {
   inputsForm!:FormGroup;
   message=""
   error!:String
+
   constructor(private fb:FormBuilder, private auth: AuthService, private route: Router){}
 
   ngOnInit(): void {
@@ -33,13 +34,9 @@ export class LoginComponent {
 
   }
 
-
   get regCard() {
     return this.inputsForm.controls;
   }
-
-
-
 
   save(){
     this.isFormSaved = true;
@@ -56,20 +53,12 @@ export class LoginComponent {
     }
 
     this.auth.checkingUser(this.inputsForm.value).subscribe((response)=>{
-      console.log(response)
+      console.log(response);
+      
     },(error: HttpErrorResponse) => {
       this.error = (error.error.message);
     }
     )
-
-    // var val = this.auth.login(this.inputsForm.value.UserNameOrEmail,this.inputsForm.value.password)
-    // if(val)
-    // {
-    //   this.route.navigate(['home'])
-    // }
-    // else
-    //   this.message = "Wrong Credientials"
-    // console.log("form", this.inputsForm.value)
   }
 
   checkPassword(){
@@ -99,6 +88,7 @@ export class LoginComponent {
   clearInput(){
     console.log("input cleared");
     this.inputText = '';
+
   }
 
 }

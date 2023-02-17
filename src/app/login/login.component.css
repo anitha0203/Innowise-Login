@@ -2,8 +2,8 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    height: 98vh;
-   
+    height: 99vh;
+   margin:15px 0px;
 }
 .main2{
     padding: 5vh;
@@ -19,7 +19,7 @@
 
 label{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 2.5vh;
 }
 
 input{
@@ -37,9 +37,13 @@ select {
     border-radius: 10px;
     border: 1px solid rgb(198, 197, 197);
     color: #555;
-    font-size: 2.5vh;
+    font-size: 22px;
     padding: 6px 10px;
+    font-size: 2vh;
    
+  }
+   .custom-select-options {
+     width: 10px;  /*set your desired width here */
   }
  
 
@@ -59,11 +63,12 @@ input:hover{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 0.5rem;
+    right: 0.1rem;
     cursor: pointer;
     border: 1px solid rgb(122, 121, 121);
-    padding:3px;
+    padding:5px;
     border-radius: 25px;
+    margin-right: 2px;
   }
   
 /* button{
@@ -82,6 +87,8 @@ button:hover{
 .err-msg{
     color: red;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.8vh;
+    padding-top:2px
 
 }
 
