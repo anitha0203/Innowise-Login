@@ -2,55 +2,49 @@
 
 <div class="main">
     <div class="main2">
-       
        <h3 style="text-align: center;">Login</h3>
         <form [formGroup]="inputsForm" (ngSubmit)="save()">
             <div class="inn">
                 <label>Username</label><br />
                 <div class="input-wrapper">
-                    <input type="text" name="username" formControlName="username" placeholder="Username" (input)="checkApi()" [(ngModel)]="inputText" required
-                    class="form-control" [ngClass]="{'is-invalid': isFormSaved && regCard['username'].errors }">
-                    <i  style="color: red;" class="fas fa-times"  *ngIf="inputText" (click)="clearInput()"></i>
+                    <input type="text" name="UserNameOrEmail" formControlName="UserNameOrEmail" placeholder="Username" (input)="checkApi()" [(ngModel)]="inputText" required
+                    class="form-control" [ngClass]="{'is-invalid': isFormSaved && regCard['UserNameOrEmail'].errors }">
+                    <i  style="color: rgb(122, 121, 121);" class="fas fa-times"  *ngIf="inputText" (click)="clearInput()"></i>
                 </div>
-                <div class="err-msg" *ngIf="isFormSaved1  && regCard['username'].errors">
-                    <div *ngIf="regCard['username'].errors['required']">Username is required</div>
-                    <div *ngIf="regCard['username'].errors['pattern']">Minimum 30 characters</div>
+                
+                <div class="err-msg">{{error}}</div>
+                <div class="err-msg" *ngIf="isFormSaved1  && regCard['UserNameOrEmail'].errors">
+                    <div *ngIf="regCard['UserNameOrEmail'].errors['required']">Username is required</div>
+                    <div *ngIf="regCard['UserNameOrEmail'].errors['pattern']">Minimum 30 characters</div>
                 </div>
-                <!-- <br /><span style="color: red;">{{message}}</span> -->
             </div>
 
             <div class="inn">            
                 <label>Password</label><br />
-                <input type="password" name="password" formControlName="password" placeholder="Password" required
-                        class="form-control" [ngClass]="{'is-invalid': isFormSaved && regCard['password'].errors }">
-                <div class="err-msg" *ngIf="isFormSaved  && regCard['password'].errors">
-                    <div *ngIf="regCard['password'].errors['required']">Password is required</div>
-                    <div *ngIf="regCard['password'].errors['minLength']">Minimum 6 characters required</div>
+                <input type="password" name="Password" formControlName="Password" placeholder="Password" required
+                        class="form-control" (input)="checkPassword()" [ngClass]="{'is-invalid': isFormSaved2 && regCard['Password'].errors }">
+                <div class="err-msg" *ngIf="isFormSaved  && regCard['Password'].errors">
+                    <div *ngIf="regCard['Password'].errors['required']">Password is required</div>
+                    <div *ngIf="regCard['Password'].errors['minLength']">Minimum 6 characters required</div>
                 </div>
             </div>
 
             <div style="text-align: right;font-family: Arial, Helvetica, sans-serif;margin-right: 2vh;font-size: 18px;"><a href="#">Reset Password</a></div>
-            <p class="errr">{{message}}</p> 
-
-         
-            <div class="inn">     
-                <label>Environment</label><br />       
-               <select   name="environment" formControlName="environment" placeholder="Placeholder" required class="form-control"  >
-
-                <option *ngFor="let item of envselect" >{{ item.organizationEnvironmentName}}</option>
-               </select>
-                <!-- <input style="background-color: #e4e4e4;" type="text" name="password" formControlName="password" placeholder="Placeholder" required
-                        class="form-control"> -->
             
+            <div class="inn">     
+                <label>Environment</label><br />     
+              
+                <select name="EnvironmentID" formControlName="EnvironmentID" placeholder="Placeholder" required style="width: 100%;">
+                    <option style="background-color: rgb(249, 249, 6);width: 100px !important;">---Select----</option>
+                    <option style="background-color: rgb(249, 249, 6);max-width: 200px;" *ngFor="let item of envselect" >{{ item.organizationEnvironmentName}}</option>
+               </select>
             </div>
+
             <div style="text-align: right; margin-right: 2vh;">
-                <button class="btn btn-primary" [disabled]="!ttt">Login</button>
+                <button class="btn btn-primary" *ngIf="true" [disabled]="!ttt">Login</button>
             </div>
             <div style="text-align: center;font-family: Arial, Helvetica, sans-serif;margin: 3vh 0px;">Or,</div>
 
-            <!-- <div class="inn">
-                <button type="submit" class="btn btn-primary" >Register</button>
-            </div> -->
 
           
         </form>

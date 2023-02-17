@@ -16,6 +16,11 @@ export class AuthService {
     return this.http.post('https://api.insurance.rahulmitra.dev/master/getuserenvironments',body);
  }
 
+  checkingUser(data:any): Observable<any> {
+    console.log(data)
+    return this.http.post('https://api.insurance.rahulmitra.dev/master/authenticate',data)
+  }
+
   login(username:string,password:string){
       if(username=='Anitha' && password=="123456"){
         localStorage.setItem('token','Innowise')

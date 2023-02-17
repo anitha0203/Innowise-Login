@@ -5,14 +5,6 @@
     height: 98vh;
    
 }
-
-.main3{
-    justify-content: center;
-    align-items: center;
-    display: flex;
-
-}
-
 .main2{
     padding: 5vh;
     border: 1px solid rgb(173, 173, 173);
@@ -41,33 +33,15 @@ input{
     font-size: 2.5vh;
 }
 select {
-    background-color: #fff;
+   
     border-radius: 10px;
     border: 1px solid rgb(198, 197, 197);
     color: #555;
     font-size: 2.5vh;
     padding: 6px 10px;
-    width: 20;
-    height: 5vh;
+   
   }
-  .select-with-data {
-    background-color: #fff;
-    border: 2px solid #5cb85c;
-    border-radius: 4px;
-    color: #5cb85c;
-    font-size: 16px;
-    padding: 6px 10px;
-  }
-  
-  /* Style for select button without data */
-  .select-no-data {
-    background-color: #fff;
-    border: 2px solid #d9534f;
-    border-radius: 4px;
-    color: #d9534f;
-    font-size: 16px;
-    padding: 6px 10px;
-  }
+ 
 
 input:hover{
     box-shadow: 0px 0px 3px 0px;
@@ -87,11 +61,11 @@ input:hover{
     transform: translateY(-50%);
     right: 0.5rem;
     cursor: pointer;
-    border: 1px solid red;
+    border: 1px solid rgb(122, 121, 121);
     padding:3px;
     border-radius: 25px;
   }
-
+  
 /* button{
     padding: 1vh 2vh;
     border-radius: 5px;

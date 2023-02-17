@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,20 +12,23 @@ import { Observable } from 'rxjs';
 })
 export class LoginComponent {
   inputText!: string;
-
   envselect: any
-
+  setApi=false;
+  isFormSaved1 = false;
+  isFormSaved = false;
+  isFormSaved2 = false;
+  ttt=false
   inputsForm!:FormGroup;
   message=""
-  dataa  = {username:"Anitha", password:"123456"}
+  error!:String
   constructor(private fb:FormBuilder, private auth: AuthService, private route: Router){}
 
   ngOnInit(): void {
 
     this.inputsForm=this.fb.group({
-      username: ['',[Validators.required,Validators.pattern("^[a-zA-Z0-9 ]{3,30}$")]],
-      password: ['',[Validators.required,Validators.minLength(6)]],
-      environment: ['',[Validators.required]]
+      UserNameOrEmail: ['',[Validators.required,Validators.pattern("^[a-zA-Z0-9 ]{3,30}$")]],
+      Password: ['',[Validators.required,Validators.minLength(6)]],
+      EnvironmentID: ['',[Validators.required]]
     });
 
   }
@@ -34,44 +37,68 @@ export class LoginComponent {
   get regCard() {
     return this.inputsForm.controls;
   }
-  setApi=false;
-  isFormSaved1 = false;
-  isFormSaved = false;
-  ttt=false
+
+
+
+
   save(){
     this.isFormSaved = true;
     if (this.inputsForm.invalid) {
     return;
     }
-    var val = this.auth.login(this.inputsForm.value.username,this.inputsForm.value.password)
-    if(val)
-    {
-      this.route.navigate(['home'])
+
+    for(var i=0;i<this.envselect.length;i++){
+      if(this.envselect[i].organizationEnvironmentName == this.inputsForm.value.EnvironmentID)
+      {
+        this.inputsForm.value.EnvironmentID = this.envselect[i].organizationEnvironmentId
+        break;
+      }
     }
-    else
-      this.message = "Wrong Credientials"
-    console.log("form", this.inputsForm.value)
+
+    this.auth.checkingUser(this.inputsForm.value).subscribe((response)=>{
+      console.log(response)
+    },(error: HttpErrorResponse) => {
+      this.error = (error.error.message);
+    }
+    )
+
+    // var val = this.auth.login(this.inputsForm.value.UserNameOrEmail,this.inputsForm.value.password)
+    // if(val)
+    // {
+    //   this.route.navigate(['home'])
+    // }
+    // else
+    //   this.message = "Wrong Credientials"
+    // console.log("form", this.inputsForm.value)
+  }
+
+  checkPassword(){
+    this.error=''
+    this.isFormSaved2 = true;
+    if(this.regCard['password'].errors)
+    return;
   }
 
   checkApi(){
+    this.ttt = false
+    this.envselect =[]
+    this.error=''
     this.isFormSaved1 = true;
-    if(this.regCard['username'].errors)
+    if(this.regCard['UserNameOrEmail'].errors)
     return;
-    this.auth.postData(this.inputsForm.value.username).subscribe((response)=>{
+    this.auth.postData(this.inputsForm.value.UserNameOrEmail).subscribe((response)=>{
       this.envselect =response
       console.log(this.envselect);
-
-    })
-    console.log("first",this.inputsForm.value.username);
-    if(this.inputsForm.value.password)
-    this.ttt = true
+      this.ttt = true
+    },(error: HttpErrorResponse) => {
+      this.error = (error.error.message);
+    }
+    )
   }
 
   clearInput(){
     console.log("input cleared");
     this.inputText = '';
   }
-
-
 
 }
