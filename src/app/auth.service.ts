@@ -8,26 +8,21 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
+  url = 'https://insurance-api01.suvamglobal.com/master/'
+
   constructor(private route: Router,private http: HttpClient) { }
 
   postData(username:any): Observable<any> {
     console.log(username)
     var body = {"UserNameOrEmail":username} 
-    return this.http.post('https://api.insurance.rahulmitra.dev/master/getuserenvironments',body);
+    return this.http.post(this.url+'getuserenvironments',body);
  }
 
   checkingUser(data:any): Observable<any> {
     console.log(data)
-    return this.http.post('https://api.insurance.rahulmitra.dev/master/authenticate',data)
+    return this.http.post(this.url+'authenticate',data)
   }
 
-  login(username:string,password:string){
-      if(username=='Anitha' && password=="123456"){
-        localStorage.setItem('token','Innowise')
-        return true;
-      }
-      return false;
-  }
 
   logout(){
     localStorage.removeItem('token')

@@ -1,20 +1,22 @@
 
 <div class="main">
     <div class="main2">
-       <h3 style="text-align: center;">Login</h3>
+        <div class="err-msg" style="text-align: center;padding-bottom: 2vh;">{{error}}</div>
+       <h2 style="text-align: center;">Login</h2>
         <form [formGroup]="inputsForm" (ngSubmit)="save()">
 
             <!--        Username Field                   -->
             <div class="inn">
                 <label>Username</label><br />
                 <div class="input-wrapper">
-                    <input type="text" name="UserNameOrEmail" formControlName="UserNameOrEmail" placeholder="Username" (input)="checkApi()" [(ngModel)]="inputText" required class="form-control" [ngClass]="{'is-invalid': isFormSaved && regCard['UserNameOrEmail'].errors }">
-                    <i  style="color: rgb(250, 5, 5);padding:2px 5px;border: 1px solid red;" class="fas fa-times"  *ngIf="inputText" (click)="clearInput()"></i>
+                    <input type="text" name="UserNameOrEmail" formControlName="UserNameOrEmail" placeholder="Username" (blur)="checkApi()" [(ngModel)]="inputText" required class="form-control" [ngClass]="{'is-invalid': isFormSaved && regCard['UserNameOrEmail'].errors }">
+                    <i  style="color: rgb(250, 5, 5);margin-right: 1vh;margin-top: -1px;" class="fas fa-times-circle"  *ngIf="inputText" (click)="clearInput()"></i>
                 </div>
-                <div class="err-msg">{{error}}</div>
-                <div class="err-msg" *ngIf="isFormSaved1  && regCard['UserNameOrEmail'].errors">
-                    <div *ngIf="regCard['UserNameOrEmail'].errors['required']">Username is required</div>
-                    <div *ngIf="regCard['UserNameOrEmail'].errors['maxLength']">Minimum 30 characters</div>
+                <div class="err-msg errrr" >
+                    <div *ngIf="isFormSaved1  && regCard['UserNameOrEmail'].errors">
+                        <div *ngIf="regCard['UserNameOrEmail'].errors['required']">Username is required</div>
+                        <div *ngIf="regCard['UserNameOrEmail'].errors['maxLength']">Minimum 30 characters</div>
+                    </div>
                 </div>
             </div>
 
@@ -22,19 +24,21 @@
             <div class="inn">            
                 <label>Password</label><br />
                 <input type="password" name="Password" formControlName="Password" placeholder="Password" required class="form-control" (input)="checkPassword()" [ngClass]="{'is-invalid': isFormSaved2 && regCard['Password'].errors }" style="width: 100%;">
-                <div class="err-msg" *ngIf="isFormSaved2  && regCard['Password'].errors">
-                    <div *ngIf="regCard['Password'].errors['required']">Password is required</div>
-                    <div *ngIf="regCard['Password'].errors['minLength']">Minimum 6 characters required</div>
+                <div class="err-msg errrr">
+                    <div *ngIf="isFormSaved2  && regCard['Password'].errors">
+                        <div *ngIf="regCard['Password'].errors['required']">Password is required</div>
+                        <div *ngIf="regCard['Password'].errors['minLength']">Minimum 6 characters required</div>
+                    </div>
                 </div>
             </div>
 
             <!--        Reset Password                   -->
-            <div style="text-align: right;font-family: Arial, Helvetica, sans-serif;margin-right: 2vh;font-size: 2.5vh;"><a href="#">Reset Password</a></div>
+            <div style="text-align: right;font-family: Arial, Helvetica, sans-serif;margin-right: 2vh;font-size: 1.8vh;"><a href="#">Reset Password</a></div>
             
             <!--        Environment Field                   -->
             <div class="inn" >     
                 <label>Environment</label><br />     
-                <select name="EnvironmentID" formControlName="EnvironmentID" placeholder="Placeholder" required style="width: 100%;">
+                <select [disabled]="!color" [ngClass]="{'disabled': !color}" name="EnvironmentID" formControlName="EnvironmentID" placeholder="Placeholder" required style="width: 100%;">
                     <option style="width: 100%;">---Select----</option>
                     <option style="width: 100%;" *ngFor="let item of envselect" >{{ item.organizationEnvironmentName}}</option>
                </select>
@@ -44,13 +48,44 @@
             </div>
 
             <!--        Submit Button                   -->
-            <div style="text-align: right; margin-right: 2vh;">
-                <button class="btn btn-primary" *ngIf="true" [disabled]="!inputsForm.valid">Login</button>
+            <div style="text-align: right; margin-right: 2vh;position: relative;">
+                <button class="btn btn-primary" style="width: 100px;" *ngIf="true" [disabled]="inputsForm.valid">
+                    <div *ngIf="!isFormSaved; else noMessage"> Login</div>
+
+                    <ng-template #noMessage style="padding: 0px;margin: 0px;">
+                        <mat-spinner [diameter]="25" class="customSpinner" style="margin-left: 1.5vh;" ></mat-spinner>
+                      </ng-template>
+                </button>
             </div>
 
 
             <div style="text-align: center;font-family: Arial, Helvetica, sans-serif;margin: 3vh 0px;">Or,</div>
 
+            <!--        Google Button                   -->
+            <div class="sec-div">
+                <div class="wrapper1">
+                  <div class="row">
+                    <button class="btn2"><span class="fab fa-google fa-1x"></span> Sign in with Google</button>
+                  </div>
+                </div>
+                <br>
+                
+            <!--        Apple Button                   -->
+                <div class="wrapper1">
+                  <div class="row">
+                    <button class="btn2"><span class="fab fa-apple"></span> Continue with Apple</button>
+                  </div>
+                </div>
+                <br>
+                
+            <!--        Microsoft Button                   -->
+                <div class="wrapper1">
+                  <div class="row">
+                    <button class="btn2" style="margin-bottom:5px ;"><span class="fab fa-microsoft"></span> Sign in with
+                      Microsoft</button>
+                  </div>
+                </div>
+              </div>
         </form>
     </div>
 </div>

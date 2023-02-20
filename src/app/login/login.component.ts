@@ -19,6 +19,7 @@ export class LoginComponent {
     isFormSaved2 = false;
     inputsForm!:FormGroup;
     error!:String
+    color=false
 
     constructor(private fb:FormBuilder, private auth: AuthService, private route: Router){}
 
@@ -53,9 +54,11 @@ export class LoginComponent {
 
       //      checking the login details using services
       this.auth.checkingUser(this.inputsForm.value).subscribe((response)=>{
+        localStorage.setItem('token','Innowise')
         this.route.navigate(['/home'])
       },(error: HttpErrorResponse) => {
         this.error = (error.error.message);
+        this.isFormSaved = false;
       })
     }
 
@@ -63,12 +66,13 @@ export class LoginComponent {
     checkPassword(){
       this.error=''
       this.isFormSaved2 = true;
-      if(this.regCard['password'].errors)
+      if(this.regCard['Password'].errors)
       return;
     }
 
     //      validating the username using regx and getting the environment data
     checkApi(){
+      this.color=false
       this.envselect =[]
       this.error=''
       this.isFormSaved1 = true;
@@ -76,6 +80,7 @@ export class LoginComponent {
       return;
       this.auth.postData(this.inputsForm.value.UserNameOrEmail).subscribe((response)=>{
         this.envselect =response
+        this.color=true
       },(error: HttpErrorResponse) => {
         this.error = (error.error.message);
       }
