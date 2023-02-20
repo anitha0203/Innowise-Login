@@ -51,7 +51,7 @@
             <div style="text-align: right; margin-right: 2vh;position: relative;">
                 <button class="btn btn-primary" style="width: 100px;" *ngIf="true" [disabled]="inputsForm.valid">
                     <div *ngIf="!isFormSaved; else noMessage"> Login</div>
-
+                    <!--            Loading Spinner              -->
                     <ng-template #noMessage style="padding: 0px;margin: 0px;">
                         <mat-spinner [diameter]="25" class="customSpinner" style="margin-left: 1.5vh;" ></mat-spinner>
                       </ng-template>
