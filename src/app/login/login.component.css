@@ -7,7 +7,7 @@
 }
 
 .main2{
-    padding: 3vh;
+    padding: 1vh;
     border: 1px solid rgb(173, 173, 173);
     background-color: #f2f2f2;
     border-radius: 5px;
@@ -85,19 +85,18 @@ input[type="text"] + i {
     height: 1.5vh;
 }
 
-select.disabled {
-    background-color:rgb(215, 215, 215);
-}
-
 
 .btn2{
     background-color: white;
     border-radius: 5px;
     height: 4.5vh;
     border: 1px solid black;
-    font-size: 1.5vh;
+    font-size: 1.6vh;
     font-weight: bold;
     width: 25vh;
+    padding-top: 1vh;
+    padding-left: 3vh;
+
   }
   .fa-microsoft{
     background: conic-gradient( #7FBA00 0deg 90deg, #FFB900 90deg 180deg, #00A4EF 180deg 270deg, #F25022 270deg 360deg ) no-repeat;
@@ -110,8 +109,6 @@ select.disabled {
     color: #AAAAAA; 
     display: inline-block;
     position: absolute;
-    right: 12px;
-    margin-top: 12px;
   }
   .fa-google {
     background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
@@ -127,42 +124,17 @@ select.disabled {
   .sec-div{
     margin-bottom: 30px;
   }
-  .wrapper1 .row i{
-    position:absolute;
-    width: 47px;
-    height: 40px;
-    font-size: 20px;
-    background-color: white;
-    border: 1px solid #4285F4;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
  
-  
- .title{
-    font-size: 2.5vh;
-    text-align: center;
-    margin-top:15px;
-
- }
- 
- .mat-raised-button{
-    float: right;
-    margin-top: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: larger;
-    color: black;
-  }
   span{
-    color: black;
-    padding: 0px 5px 0px 5px;
-    font-size: 1.8vh;
-    float:left;
+    margin-right: 1vh;
+    font-size: medium;
   }
 
 :host ::ng-deep .customSpinner circle{
     stroke: #ffffff!important;
+}
+
+.tttt{
+  background-color: #c4c4c4;
+  height: 5vh;
 }

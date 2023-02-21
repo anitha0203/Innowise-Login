@@ -37,19 +37,24 @@
             
             <!--        Environment Field                   -->
             <div class="inn" >     
-                <label>Environment</label><br />     
-                <select [disabled]="!color" [ngClass]="{'disabled': !color}" name="EnvironmentID" formControlName="EnvironmentID" placeholder="Placeholder" required style="width: 100%;">
-                    <option style="width: 100%;">---Select----</option>
-                    <option style="width: 100%;" *ngFor="let item of envselect" >{{ item.organizationEnvironmentName}}</option>
-               </select>
-               <div class="err-msg" *ngIf="isFormSaved  && regCard['EnvironmentID'].errors">
-                <div *ngIf="regCard['EnvironmentID'].errors['EnvironmentID']">Environment is required</div>
-            </div>
+                <label>Environment</label><br />
+                <div *ngIf="!color; else noge" >
+                    <input class="tttt" [disabled]="!color" />
+                </div>     
+                <ng-template #noge>
+                    <select name="EnvironmentID" formControlName="EnvironmentID" placeholder="Placeholder" required style="width: 100%;height: 5vh;">
+                        <option *ngIf="color" style="width: 100%;">---Select----</option>
+                        <option style="width: 100%;" *ngFor="let item of envselect" >{{ item.organizationEnvironmentName}}</option>
+                   </select>
+                   <div class="err-msg" *ngIf="isFormSaved  && regCard['EnvironmentID'].errors">
+                    <div *ngIf="regCard['EnvironmentID'].errors['EnvironmentID']">Environment is required</div>
+                </div>
+                </ng-template>
             </div>
 
             <!--        Submit Button                   -->
             <div style="text-align: right; margin-right: 2vh;position: relative;">
-                <button class="btn btn-primary" style="width: 100px;" *ngIf="true" [disabled]="inputsForm.valid">
+                <button class="btn btn-primary" style="width: 100px;" *ngIf="true" [disabled]="!inputsForm.valid">
                     <div *ngIf="!isFormSaved; else noMessage"> Login</div>
                     <!--            Loading Spinner              -->
                     <ng-template #noMessage style="padding: 0px;margin: 0px;">
@@ -65,7 +70,7 @@
             <div class="sec-div">
                 <div class="wrapper1">
                   <div class="row">
-                    <button class="btn2"><span class="fab fa-google fa-1x"></span> Sign in with Google</button>
+                    <div class="btn2"><span class="fab fa-google fa-1x"></span> Sign in with Google</div>
                   </div>
                 </div>
                 <br>
@@ -73,7 +78,7 @@
             <!--        Apple Button                   -->
                 <div class="wrapper1">
                   <div class="row">
-                    <button class="btn2"><span class="fab fa-apple"></span> Continue with Apple</button>
+                    <div class="btn2"><span class="fab fa-apple"></span> Continue with Apple</div>
                   </div>
                 </div>
                 <br>
@@ -81,8 +86,8 @@
             <!--        Microsoft Button                   -->
                 <div class="wrapper1">
                   <div class="row">
-                    <button class="btn2" style="margin-bottom:5px ;"><span class="fab fa-microsoft"></span> Sign in with
-                      Microsoft</button>
+                    <div class="btn2" style="margin-bottom:5px ;"><span class="fab fa-microsoft"></span> Sign in with
+                      Microsoft</div>
                   </div>
                 </div>
               </div>
