@@ -2,7 +2,12 @@ import { Component } from '@angular/core';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+
+export interface USERENV{
+  "organizationEnvironmentId": number,
+  "organizationEnvironmentName": string
+}
 
 @Component({
   selector: 'app-login',
@@ -12,8 +17,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LoginComponent {
 
     inputText!: string;
-    envselect: any
-    setApi=false;
+    envselect: USERENV[]=[]
+    visible: boolean = true;
+    changeType: boolean = true;
+    inputdata= false
     isFormSaved1 = false;
     isFormSaved = false;
     isFormSaved2 = false;
@@ -21,7 +28,7 @@ export class LoginComponent {
     error!:String
     color=false
 
-    constructor(private fb:FormBuilder, private auth: AuthService, private route: Router){}
+    constructor(private fb:FormBuilder, private auth: AuthService, private route: Router,private http: HttpClient){}
 
     ngOnInit(): void {
       this.inputsForm=this.fb.group({
@@ -53,17 +60,30 @@ export class LoginComponent {
       }
 
       //      checking the login details using services
-      this.auth.checkingUser(this.inputsForm.value).subscribe((response)=>{
-        localStorage.setItem('token','Innowise')
-        this.route.navigate(['/home'])
-      },(error: HttpErrorResponse) => {
-        this.error = (error.error.message);
-        this.isFormSaved = false;
-      })
+      if(this.inputsForm.value.EnvironmentID == 1)
+      {
+          this.auth.checkingMaster(this.inputsForm.value).subscribe((response)=>{
+            localStorage.setItem('token',response.token)
+            this.route.navigate(['/home'])
+          },(error: HttpErrorResponse) => {
+            this.error = (error.error.message);
+            this.isFormSaved = false;
+          })
+      }
+      else{
+          this.auth.checkingUser(this.inputsForm.value).subscribe((response)=>{
+            localStorage.setItem('token',response.token)
+            this.route.navigate(['/home'])
+          },(error: HttpErrorResponse) => {
+            this.error = (error.error.message);
+            this.isFormSaved = false;
+          })
+      }
     }
 
     //      validating the password using regx
     checkPassword(){
+      this.inputdata = true
       this.error=''
       this.isFormSaved2 = true;
       if(this.regCard['Password'].errors)
@@ -92,6 +112,12 @@ export class LoginComponent {
       this.envselect =[]
       this.error=''
       this.inputText = '';
+    }
+
+    //      eye icon at password field
+    viewpass(){
+      this.visible = !this.visible;
+      this.changeType = !this.changeType
     }
 
 }

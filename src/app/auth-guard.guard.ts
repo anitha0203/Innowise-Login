@@ -26,13 +26,10 @@ export class AuthGuardGuard implements CanActivate, CanActivateChild, CanLoad {
     return this.authenticate();
   }
 
-  private authenticate(): boolean {
-    if (!this.auth.isLoggedIn()) {
-      this.router.navigateByUrl("/");
-      return false;
-    } else {
-      return true;
-    }
+  async authenticate() {
+    var token = localStorage.getItem('token');
+    return await this.auth.getDataa(token);
   }
+
 
 }
