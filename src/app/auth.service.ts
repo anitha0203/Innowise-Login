@@ -33,7 +33,8 @@ export class AuthService {
       this.route.navigate([''])
     }
 
-    d = false
+    d = ''
+
     async getDataa(token:any){
       await fetch('https://insurance-api01.suvamglobal.com/master/testauth', {
         method: 'GET',
@@ -41,13 +42,9 @@ export class AuthService {
           'Authorization': token
         },
       })
-      .then((response) =>{ 
-        if(response.statusText == "OK")
-          this.d = true
-        else
-          this.d = false
+      .then((response) =>{
+          this.d = response.statusText
       })
       return this.d
     }
-
 }
